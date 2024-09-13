@@ -1,24 +1,19 @@
 mydata <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt", header = TRUE, sep = "\t")
-filtered_data <- mydata[mydata$Filter != 1, ]
-remaining_participants <- nrow(filtered_data)
-print(remaining_participants)
-testosterone_summary <- aggregate(Testosteron ~ Sex, data = mydata, summary)
-print(testosterone_summary)
+filtered_data <- mydata[mydata$Filter != 1, ] ###Data-cleaning um alle unnötigen Daten zu entfernen  ###Part1: Cleaining 
+remaining_participants <- nrow(filtered_data) 
+print(remaining_participants) ###die Anzahl der übrig bleibenden Teilnehmenden 
+testosterone_summary <- aggregate(Testosteron ~ Sex, data = filtered_data, summary) ###Part2: Quality, Validation, Relibaility 
+print(testosterone_summary) ### Testosteron steht als abhängige Varible auf der linken Seite und Sex als unabhöngige Variable auf der rechten Seite des Tild-Zeichen; 
 
 #Reliability: 
-#Um die Aufgabenstellung zu lösen, führen wir die folgenden Schritte aus:
-#1. Berechne die Korrelation zwischen den beiden Gedächtnismessungen: SD (Short Delay) und LD (Long Delay).
-#2. Untersuche den Leistungsunterschied zwischen SD und LD.
-#3. Prüfe, ob dieser Unterschied sinnvoll ist.
-#4. Führe die gleiche Analyse für die Replikationsstichprobe durch.
 
 # Berechne die Korrelation zwischen EM_SD und EM_LD
 correlation <- cor(filtered_data$EM_SD, filtered_data$EM_LD, use = "complete.obs")
-print(paste("Korrelation zwischen EM_SD und EM_LD:", correlation))
+print(paste("Korrelation zwischen EM_SD und EM_LD:", correlation))###1. Berechne die Korrelation zwischen den beiden Gedächtnismessungen: SD (Short Delay) und LD (Long Delay).
 
 # Paired t-test für den Unterschied zwischen EM_SD und EM_LD
 t_test_result <- t.test(filtered_data$EM_SD, filtered_data$EM_LD, paired = TRUE)
-print(t_test_result)
+print(t_test_result) ###2. Untersuche den Leistungsunterschied zwischen SD und LD.
 
 #Falls ein signifikanter Unterschied festgestellt wird, können wir dies interpretieren. Im Allgemeinen ist es sinnvoll, dass die Leistung bei der Gedächtnisaufgabe nach einem kurzen Intervall (SD) besser ist als nach einem längeren Intervall (LD), da die Erinnerung im Laufe der Zeit abnimmt.
 
@@ -26,7 +21,7 @@ print(t_test_result)
 repdata<- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/repdata.txt", header = TRUE, sep = "\t")
 # Berechne die Korrelation zwischen EM_SD und EM_LD in RepData
 correlationrep <- cor(repdata$EM_SD, repdata$EM_LD, use = "complete.obs")
-print(paste("Korrelation zwischen EM_SD und EM_LD:", correlationrep))
+print(paste("Korrelation zwischen EM_SD und EM_LD:", correlationrep))###4. Führe die gleiche Analyse für die Replikationsstichprobe durch.
 
 # Paired t-test für den Unterschied zwischen EM_SD und EM_LD repdata
 t_test_resultrep <- t.test(repdata$EM_SD, repdata$EM_LD, paired = TRUE)
@@ -58,7 +53,7 @@ print(corfMRIpicrep)
 
 #Hypothese:"Die fMRI-Aktivität in der Amygdala und im Hippocampus ist während der Betrachtung negativer Bilder stärker korreliert als während der Betrachtung neutraler Bilder."
 
-# Beispiel-Daten für Amygdala und Hippocampus unter zwei Bedingungen (negativ und neutral)
+# Beispiel-Daten für Amygdala und Hippocampus unter zwei Bedingungen (negativ und neutral)in mydata ###Part 5 neue Hypothese
 fMRI_amy_neg <- c(4.81, 4.56, -0.68, 4.19, 3.90, 2.62, 3.41, 3.38, 3.64, 3.50)  # Amygdala (negativ)
 fMRI_hipp_neg <- c(3.96, 6.65, -0.20, 3.01, 3.03, 3.31, 3.99, 4.41, 3.10, 5.34)  # Hippocampus (negativ)
 
@@ -80,3 +75,5 @@ install.packages("psych")
 library("psych")
 fisher_test <- r.test(n = length(fMRI_amy_neg), r12 = cor_neg, r34 = cor_neu)
 print(fisher_test)
+
+###Altrenativ könnte es 2 verschiedene R-Scripts jeweils mit den Orginaldaten und den Replikationsdaten geben 
