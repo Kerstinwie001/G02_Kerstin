@@ -6,3 +6,14 @@ remaining_participants <- nrow(filtered_data)
 print(remaining_participants)
 testosterone_summary <- aggregate(Testosteron ~ Sex, data = mydata, summary)
 print(testosterone_summary)
+
+#Reliability: 
+#Um die Aufgabenstellung zu lösen, führen wir die folgenden Schritte aus:
+#1. Berechne die Korrelation zwischen den beiden Gedächtnismessungen: SD (Short Delay) und LD (Long Delay).
+#2. Untersuche den Leistungsunterschied zwischen SD und LD.
+#3. Prüfe, ob dieser Unterschied sinnvoll ist.
+#4. Führe die gleiche Analyse für die Replikationsstichprobe durch.
+
+# Berechne die Korrelation zwischen EM_SD und EM_LD
+correlation <- cor(mydata$EM_SD, mydata$EM_LD, use = "complete.obs")
+print(paste("Korrelation zwischen EM_SD und EM_LD:", correlation))
