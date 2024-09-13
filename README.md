@@ -15,6 +15,5 @@ Form initial 1000 subjects the data from 833 subjects were used for the data Ana
 ##Validation 
 to validate the data, the "Mean"-Score of Testosteron where expacted higher in the male group. The mean-score in Group 1 ist 1.21 and in group 2 23.191. Thats why the male group should be group 2, in the initial data set. This findings could be replicated in the replication data with a "Mean" of 1.21 in group 1 and 24.167 in group 2. 
 ## Reliability
-
-
+In the initial Data, the correlation between a repeated measurment (SD = short delay, after 10 min & LD = long delay – after 1 day) where 0.8569, with and significant p-value < 2.2e-16. In the replication group the correlation is 0.868 with a significant p-value of < 2.2e-16. 
 #Discussion
