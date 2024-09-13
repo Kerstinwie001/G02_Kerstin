@@ -54,4 +54,6 @@ if (nrow(repdata) > 0) {
  # Beispiel: fMRI-Daten für Amygdala und Hippocampus
 corfMRIpic<-cor(mydata$fMRI_amy_neg_neu, mydata$fMRI_hipp_neg_neu, use = "complete.obs")
 print(corfMRIpic)                      
-                      
+                    
+corfMRIpicrep<-cor(repdata$fMRI_amy_neg_neu, repdata$fMRI_hipp_neg_neu, use = "complete.obs")
+print(corfMRIpicrep)
