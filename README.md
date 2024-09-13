@@ -9,6 +9,8 @@ at the beginning all subjects with low quality of data where excluded, in the in
 To test the validation of the data, the Testosteron Levels between the two sex groups where analysied, with the expaction of a higher "Mean"-Score of Testosteron Level in the male group. Therefore, this effect should also be visible in the replication data.
 ##Reliability
 to test the relaibility, the correlation between a repeated measurment (SD = short delay, after 10 min & LD = long delay – after 1 day) where tested via paired t-test in the initial and replication data.
+##Aggrigation 
+Since the SD and LD memory performance are highly correlated,we calculated also the average memory performance for the downstream analysis for both samples.
 #Results 
 ##Pre-Proccessing 
 Form initial 1000 subjects the data from 833 subjects were used for the data Analysis of the initial dataset and 253 out of 300 from the replication data set.
