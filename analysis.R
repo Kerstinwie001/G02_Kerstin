@@ -55,5 +55,28 @@ print(corfMRIpic)
                     
 corfMRIpicrep<-cor(repdata$fMRI_amy_neg_neu, repdata$fMRI_hipp_neg_neu, use = "complete.obs")
 print(corfMRIpicrep)
-#Hypothese: 
 
+#Hypothese:"Die fMRI-Aktivität in der Amygdala und im Hippocampus ist während der Betrachtung negativer Bilder stärker korreliert als während der Betrachtung neutraler Bilder."
+
+# Beispiel-Daten für Amygdala und Hippocampus unter zwei Bedingungen (negativ und neutral)
+fMRI_amy_neg <- c(4.81, 4.56, -0.68, 4.19, 3.90, 2.62, 3.41, 3.38, 3.64, 3.50)  # Amygdala (negativ)
+fMRI_hipp_neg <- c(3.96, 6.65, -0.20, 3.01, 3.03, 3.31, 3.99, 4.41, 3.10, 5.34)  # Hippocampus (negativ)
+
+fMRI_amy_neu <- c(3.00, 2.90, 1.75, 2.80, 2.65, 2.50, 3.10, 3.50, 3.20, 3.40)  # Amygdala (neutral)
+fMRI_hipp_neu <- c(2.10, 2.50, 1.50, 2.70, 2.45, 2.40, 2.80, 3.00, 3.00, 3.10)  # Hippocampus (neutral)
+
+# Berechne die Korrelationen für negative Bilder
+cor_neg <- cor(fMRI_amy_neg, fMRI_hipp_neg, use = "complete.obs")
+
+# Berechne die Korrelationen für neutrale Bilder
+cor_neu <- cor(fMRI_amy_neu, fMRI_hipp_neu, use = "complete.obs")
+
+# Ausgabe der Korrelationen
+print(paste("Korrelation für negative Bilder:", cor_neg))
+print(paste("Korrelation für neutrale Bilder:", cor_neu))
+
+# Optional: Fisher-Z-Test für den Vergleich der beiden Korrelationen
+install.packages("psych")
+library("psych")
+fisher_test <- r.test(n = length(fMRI_amy_neg), r12 = cor_neg, r34 = cor_neu)
+print(fisher_test)
