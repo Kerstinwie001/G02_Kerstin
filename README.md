@@ -13,6 +13,8 @@ to test the relaibility, the correlation between a repeated measurment (SD = sho
 Since the SD and LD memory performance are highly correlated,we calculated also the average memory performance for the downstream analysis for both samples.
 ##Validation fMRI
 the fMRI signal between negative and neutral Pictures where compared in both data-sets.
+##Hypothesis 
+We hypothsis, that there is a higher activation of the Amygdala when presented the negative Pictures than the neutral Pictures in both dataset. Therefor, fisher t-test where used. 
 #Results 
 ##Pre-Proccessing 
 Form initial 1000 subjects the data from 833 subjects were used for the data Analysis of the initial dataset and 253 out of 300 from the replication data set.
@@ -22,4 +24,7 @@ to validate the data, the "Mean"-Score of Testosteron where expacted higher in t
 In the initial Data, the correlation between a repeated measurment (SD = short delay, after 10 min & LD = long delay – after 1 day) where 0.8569, with and significant p-value < 2.2e-16. In the replication group the correlation is 0.868 with a significant p-value of < 2.2e-16. 
 ##Validation fMRI
 the fMRI signal between negative and neutral Pictures where compared in both data-sets,with an correlation of 0.748 in the initical data set and and an correlation of 0.766 in the replication data set. 
+##Hyothesis 
+
+##Hypothesis 
 #Discussion
