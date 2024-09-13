@@ -17,3 +17,7 @@ print(testosterone_summary)
 # Berechne die Korrelation zwischen EM_SD und EM_LD
 correlation <- cor(mydata$EM_SD, mydata$EM_LD, use = "complete.obs")
 print(paste("Korrelation zwischen EM_SD und EM_LD:", correlation))
+
+# Paired t-test für den Unterschied zwischen EM_SD und EM_LD
+t_test_result <- t.test(mydata$EM_SD, mydata$EM_LD, paired = TRUE)
+print(t_test_result)
