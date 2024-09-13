@@ -33,3 +33,21 @@ print(paste("Korrelation zwischen EM_SD und EM_LD:", correlationrep))
 # Paired t-test für den Unterschied zwischen EM_SD und EM_LD repdata
 t_test_resultrep <- t.test(repdata$EM_SD, repdata$EM_LD, paired = TRUE)
 print(t_test_resultrep)
+
+#9)	Aggregation: Since the SD and LD memory performance are highly correlated, you can calculate also the average memory performance for the downstream analysis for both samples.
+# Berechne den Durchschnitt der Gedächtnisleistungen (SD und LD) für alle Teilnehmer
+mydata$Memory_Avg <- rowMeans(mydata[, c("EM_SD", "EM_LD")], na.rm = TRUE)
+
+# Überprüfe die ersten Zeilen, um den neuen Durchschnittswert zu sehen
+head(mydata[, c("EM_SD", "EM_LD", "Memory_Avg")])
+
+# Berechne den Durchschnitt der Gedächtnisleistungen (SD und LD) für die Replikationsstichprobe
+if (nrow(repdata) > 0) {
+  repdata$Memory_Avg <- rowMeans(repdata[, c("EM_SD", "EM_LD")], na.rm = TRUE)
+  
+  # Überprüfe die ersten Zeilen der Replikationsstichprobe, um den neuen Durchschnittswert zu sehen
+  head(repdata[, c("EM_SD", "EM_LD", "Memory_Avg")])
+} else {
+  print(repdata)
+}
+
