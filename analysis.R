@@ -2,7 +2,20 @@ mydata <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt", 
 filtered_data <- mydata[mydata$Filter != 1, ] ###Data-cleaning um alle unnötigen Daten zu entfernen  ###Part1: Cleaining 
 remaining_participants <- nrow(filtered_data) 
 print(remaining_participants) ###die Anzahl der übrig bleibenden Teilnehmenden 
-testosterone_summary <- aggregate(Testosteron ~ Sex, data = filtered_data, summary) ###Part2: Quality, Validation, Relibaility 
+testosterone_summary <- aggregate(Testosteron ~ Sex, data = filtered_data, summary)
+
+
+filtered_data_rep <- repdata[repdata$Filter != 1, ] ###Data-cleaning um alle unnötigen Daten zu entfernen  ###Part1: Cleaining 
+remaining_participants_rep <- nrow(filtered_data_rep) 
+print(remaining_participants_rep) ###die Anzahl der übrig bleibenden Teilnehmenden 
+
+testosterone_summary <- aggregate(Testosteron ~ Sex, data = filtered_data, summary)
+
+testosterone_summary_rep <- aggregate(Testosteron ~ Sex, data = filtered_data_rep, summary)
+
+print(testosterone_summary_rep)
+
+###Part2: Quality, Validation, Relibaility 
 print(testosterone_summary) ### Testosteron steht als abhängige Varible auf der linken Seite und Sex als unabhöngige Variable auf der rechten Seite des Tild-Zeichen; 
 
 #Reliability: 
@@ -20,11 +33,11 @@ print(t_test_result) ###2. Untersuche den Leistungsunterschied zwischen SD und L
 #Analyse RepData 
 repdata<- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/repdata.txt", header = TRUE, sep = "\t")
 # Berechne die Korrelation zwischen EM_SD und EM_LD in RepData
-correlationrep <- cor(repdata$EM_SD, repdata$EM_LD, use = "complete.obs")
+correlationrep <- cor(filtered_data_rep$EM_SD, filtered_data_rep$EM_LD, use = "complete.obs")
 print(paste("Korrelation zwischen EM_SD und EM_LD:", correlationrep))###4. Führe die gleiche Analyse für die Replikationsstichprobe durch.
 
 # Paired t-test für den Unterschied zwischen EM_SD und EM_LD repdata
-t_test_resultrep <- t.test(repdata$EM_SD, repdata$EM_LD, paired = TRUE)
+t_test_resultrep <- t.test(filtered_data_rep$EM_SD, filtered_data_rep$EM_LD, paired = TRUE)
 print(t_test_resultrep)
 
 #9)	Aggregation: Since the SD and LD memory performance are highly correlated, you can calculate also the average memory performance for the downstream analysis for both samples.
@@ -48,12 +61,14 @@ if (nrow(repdata) > 0) {
 corfMRIpic<-cor(filtered_data$fMRI_amy_neg_neu, filtered_data$fMRI_hipp_neg_neu, use = "complete.obs")
 print(corfMRIpic)                      
                     
-corfMRIpicrep<-cor(repdata$fMRI_amy_neg_neu, repdata$fMRI_hipp_neg_neu, use = "complete.obs")
+corfMRIpicrep<-cor(filtered_data_rep$fMRI_amy_neg_neu, filtered_data_rep$fMRI_hipp_neg_neu, use = "complete.obs")
 print(corfMRIpicrep)
 
 #Hypothese:"Die fMRI-Aktivität in der Amygdala und im Hippocampus ist während der Betrachtung negativer Bilder stärker korreliert als während der Betrachtung neutraler Bilder."
 
-# Beispiel-Daten für Amygdala und Hippocampus unter zwei Bedingungen (negativ und neutral)in mydata ###Part 5 neue Hypothese
+# Beispiel-Daten für Amygdala und Hippocampus unter zwei Bedingungen (negativ und neutral)in mydata 
+
+###Part 5 neue Hypothese
 fMRI_amy_neg <- c(4.81, 4.56, -0.68, 4.19, 3.90, 2.62, 3.41, 3.38, 3.64, 3.50)  # Amygdala (negativ)
 fMRI_hipp_neg <- c(3.96, 6.65, -0.20, 3.01, 3.03, 3.31, 3.99, 4.41, 3.10, 5.34)  # Hippocampus (negativ)
 
