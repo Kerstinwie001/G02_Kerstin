@@ -21,3 +21,15 @@ print(paste("Korrelation zwischen EM_SD und EM_LD:", correlation))
 # Paired t-test für den Unterschied zwischen EM_SD und EM_LD
 t_test_result <- t.test(mydata$EM_SD, mydata$EM_LD, paired = TRUE)
 print(t_test_result)
+
+#Falls ein signifikanter Unterschied festgestellt wird, können wir dies interpretieren. Im Allgemeinen ist es sinnvoll, dass die Leistung bei der Gedächtnisaufgabe nach einem kurzen Intervall (SD) besser ist als nach einem längeren Intervall (LD), da die Erinnerung im Laufe der Zeit abnimmt.
+
+#Analyse RepData 
+repdata<- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/repdata.txt", header = TRUE, sep = "\t")
+# Berechne die Korrelation zwischen EM_SD und EM_LD in RepData
+correlationrep <- cor(repdata$EM_SD, repdata$EM_LD, use = "complete.obs")
+print(paste("Korrelation zwischen EM_SD und EM_LD:", correlationrep))
+
+# Paired t-test für den Unterschied zwischen EM_SD und EM_LD repdata
+t_test_resultrep <- t.test(repdata$EM_SD, repdata$EM_LD, paired = TRUE)
+print(t_test_resultrep)
