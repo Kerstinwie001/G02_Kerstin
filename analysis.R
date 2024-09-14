@@ -20,7 +20,7 @@ power_small
 power_medium
 power_large
 
-#2.	You want to run 10 analysis – therefore you have to adjust your alpha level to 0.005. How much power do you have now to detect a significant finding for a small, medium or large effect?
+# You want to run 10 analysis – therefore you have to adjust your alpha level to 0.005. How much power do you have now to detect a significant finding for a small, medium or large effect?
 alpha_adj <- 0.005  # Adjusted alpha level
 
 # Power calculation for small effect size (r = 0.1) with adjusted alpha
@@ -79,24 +79,26 @@ power_large_250
 ### Read in data and quality check = removing of low-quality data
 mydata <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt", header = TRUE, sep = "\t")
 
-###Data-cleaning um alle unnötigen Daten zu entfernen 
-filtered_data <- mydata[mydata$Filter != 1, ] 
+###Data-cleaning 
+
+filtered_data <- mydata[mydata$Filter != 1, ] #Data-cleanup für die initialen Daten
 remaining_participants <- nrow(filtered_data) 
 print(remaining_participants)  
 testosterone_summary <- aggregate(Testosteron ~ Sex, data = filtered_data, summary)
 
+repdata<- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/repdata.txt", header = TRUE, sep = "\t")
 
-filtered_data_rep <- repdata[repdata$Filter != 1, ] 
+filtered_data_rep <- repdata[repdata$Filter != 1, ] #Data-cleanup für die Repitition  
 remaining_participants_rep <- nrow(filtered_data_rep) 
 print(remaining_participants_rep) 
 
 ### Reliability, Validation and Aggregation of data (2-6 of exercise 4)
-
+#WIe hoch ist der Testosteron Wert pro Gruppe in den initialen Daten und in der Replikation? 
 testosterone_summary <- aggregate(Testosteron ~ Sex, data = filtered_data, summary)
 
 testosterone_summary_rep <- aggregate(Testosteron ~ Sex, data = filtered_data_rep, summary)
 
-print(testosterone_summary_rep)
+print(testosterone_summary_rep) 
 
 print(testosterone_summary) 
 
@@ -109,9 +111,6 @@ t_test_result <- t.test(filtered_data$EM_SD, filtered_data$EM_LD, paired = TRUE)
 print(t_test_result) ###2. Untersuche den Leistungsunterschied zwischen SD und LD.
 
 #Falls ein signifikanter Unterschied festgestellt wird, können wir dies interpretieren. Im Allgemeinen ist es sinnvoll, dass die Leistung bei der Gedächtnisaufgabe nach einem kurzen Intervall (SD) besser ist als nach einem längeren Intervall (LD), da die Erinnerung im Laufe der Zeit abnimmt.
-
-#Analyse RepData 
-repdata<- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/repdata.txt", header = TRUE, sep = "\t")
 
 # Berechne die Korrelation zwischen EM_SD und EM_LD in RepData
 correlationrep <- cor(filtered_data_rep$EM_SD, filtered_data_rep$EM_LD, use = "complete.obs")
@@ -170,6 +169,21 @@ print(paste("Korrelation für neutrale Bilder:", cor_neu))
 install.packages("psych")
 library("psych")
 fisher_test <- r.test(n = length(fMRI_amy_neg), r12 = cor_neg, r34 = cor_neu)
+print(fisher_test)
+
+cor_neg <- cor(neg_data$fMRI_amy_neg_neu, neg_data$fMRI_hipp_neg_neu, use = "complete.obs")
+
+# Calculate the correlation between Amygdala and Hippocampus for neutral images
+cor_neu <- cor(neu_data$fMRI_amy_neg_neu, neu_data$fMRI_hipp_neg_neu, use = "complete.obs")
+
+# Print the correlations
+print(paste("Korrelation für negative Bilder:", cor_neg))
+print(paste("Korrelation für neutrale Bilder:", cor_neu))
+
+# Perform a Fisher Z-test to compare the two correlations
+fisher_test <- r.test(n = nrow(neg_data), r12 = cor_neg, r34 = cor_neu)
+
+# Print the Fisher Z-test result
 print(fisher_test)
 
 ### Additional analysis
