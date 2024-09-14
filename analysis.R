@@ -1,4 +1,80 @@
-###Power analysis: dont have the code anymore, will do it again 
+###Power analysis: 
+install.packages("pwr")
+library(pwr)
+
+#Define the parameters
+n <- 800 # Sample size
+alpha <- 0.05 # Significance level
+
+#Power calculation for small effect size (r = 0.1)
+power_small <- pwr.r.test(n = n, r = 0.1, sig.level = alpha, alternative = "two.sided")
+
+#Power calculation for medium effect size (r = 0.3)
+power_medium <- pwr.r.test(n = n, r = 0.3, sig.level = alpha, alternative = "two.sided")
+
+#Power calculation for large effect size (r = 0.5)
+power_large <- pwr.r.test(n = n, r = 0.5, sig.level = alpha, alternative = "two.sided")
+
+#Print results
+power_small
+power_medium
+power_large
+
+#2.	You want to run 10 analysis – therefore you have to adjust your alpha level to 0.005. How much power do you have now to detect a significant finding for a small, medium or large effect?
+alpha_adj <- 0.005  # Adjusted alpha level
+
+# Power calculation for small effect size (r = 0.1) with adjusted alpha
+power_small_adj <- pwr.r.test(n = n, r = 0.1, sig.level = alpha_adj, alternative = "two.sided")
+
+# Power calculation for medium effect size (r = 0.3) with adjusted alpha
+power_medium_adj <- pwr.r.test(n = n, r = 0.3, sig.level = alpha_adj, alternative = "two.sided")
+
+# Power calculation for large effect size (r = 0.5) with adjusted alpha
+power_large_adj <- pwr.r.test(n = n, r = 0.5, sig.level = alpha_adj, alternative = "two.sided")
+
+# Print results
+power_small_adj
+power_medium_adj
+power_large_adj
+
+# What is the minimum sample size you need to replicate a large, medium, or a small effect with a power of 90%?
+
+# Define the parameters
+power_target <- 0.90  # Desired power
+alpha <- 0.05         # Significance level
+
+# Sample size calculation for small effect size (r = 0.1)
+sample_size_small <- pwr.r.test(r = 0.1, sig.level = alpha, power = power_target, alternative = "two.sided")
+
+# Sample size calculation for medium effect size (r = 0.3)
+sample_size_medium <- pwr.r.test(r = 0.3, sig.level = alpha, power = power_target, alternative = "two.sided")
+
+# Sample size calculation for large effect size (r = 0.5)
+sample_size_large <- pwr.r.test(r = 0.5, sig.level = alpha, power = power_target, alternative = "two.sided")
+
+# Print results
+sample_size_small
+sample_size_medium
+sample_size_large
+
+# Your replication sample contains about 250 participants with high-quality data. How much power do you have to replicate a significant finding for a small, medium or large effect (alpha=0.05, two-sided) in this sample?
+# Define the parameters
+n <- 250       # Sample size
+alpha <- 0.05  # Significance level
+
+# Power calculation for small effect size (r = 0.1)
+power_small_250 <- pwr.r.test(n = n, r = 0.1, sig.level = alpha, alternative = "two.sided")
+
+# Power calculation for medium effect size (r = 0.3)
+power_medium_250 <- pwr.r.test(n = n, r = 0.3, sig.level = alpha, alternative = "two.sided")
+
+# Power calculation for large effect size (r = 0.5)
+power_large_250 <- pwr.r.test(n = n, r = 0.5, sig.level = alpha, alternative = "two.sided")
+
+# Print results
+power_small_250
+power_medium_250
+power_large_250
 
 ### Read in data and quality check = removing of low-quality data
 mydata <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt", header = TRUE, sep = "\t")
@@ -97,4 +173,5 @@ fisher_test <- r.test(n = length(fMRI_amy_neg), r12 = cor_neg, r34 = cor_neu)
 print(fisher_test)
 
 ### Additional analysis
+
 ### Replication
