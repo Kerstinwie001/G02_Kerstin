@@ -1,13 +1,20 @@
+###Power analysis: dont have the code anymore, will do it again 
+
+### Read in data and quality check = removing of low-quality data
 mydata <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt", header = TRUE, sep = "\t")
-filtered_data <- mydata[mydata$Filter != 1, ] ###Data-cleaning um alle unnötigen Daten zu entfernen  ###Part1: Cleaining 
+
+###Data-cleaning um alle unnötigen Daten zu entfernen 
+filtered_data <- mydata[mydata$Filter != 1, ] 
 remaining_participants <- nrow(filtered_data) 
-print(remaining_participants) ###die Anzahl der übrig bleibenden Teilnehmenden 
+print(remaining_participants)  
 testosterone_summary <- aggregate(Testosteron ~ Sex, data = filtered_data, summary)
 
 
-filtered_data_rep <- repdata[repdata$Filter != 1, ] ###Data-cleaning um alle unnötigen Daten zu entfernen  ###Part1: Cleaining 
+filtered_data_rep <- repdata[repdata$Filter != 1, ] 
 remaining_participants_rep <- nrow(filtered_data_rep) 
-print(remaining_participants_rep) ###die Anzahl der übrig bleibenden Teilnehmenden 
+print(remaining_participants_rep) 
+
+### Reliability, Validation and Aggregation of data (2-6 of exercise 4)
 
 testosterone_summary <- aggregate(Testosteron ~ Sex, data = filtered_data, summary)
 
@@ -15,12 +22,9 @@ testosterone_summary_rep <- aggregate(Testosteron ~ Sex, data = filtered_data_re
 
 print(testosterone_summary_rep)
 
-###Part2: Quality, Validation, Relibaility 
-print(testosterone_summary) ### Testosteron steht als abhängige Varible auf der linken Seite und Sex als unabhöngige Variable auf der rechten Seite des Tild-Zeichen; 
+print(testosterone_summary) 
 
-#Reliability: 
-
-# Berechne die Korrelation zwischen EM_SD und EM_LD
+#Reliability: Berechne die Korrelation zwischen EM_SD und EM_LD
 correlation <- cor(filtered_data$EM_SD, filtered_data$EM_LD, use = "complete.obs")
 print(paste("Korrelation zwischen EM_SD und EM_LD:", correlation))###1. Berechne die Korrelation zwischen den beiden Gedächtnismessungen: SD (Short Delay) und LD (Long Delay).
 
@@ -32,6 +36,7 @@ print(t_test_result) ###2. Untersuche den Leistungsunterschied zwischen SD und L
 
 #Analyse RepData 
 repdata<- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/repdata.txt", header = TRUE, sep = "\t")
+
 # Berechne die Korrelation zwischen EM_SD und EM_LD in RepData
 correlationrep <- cor(filtered_data_rep$EM_SD, filtered_data_rep$EM_LD, use = "complete.obs")
 print(paste("Korrelation zwischen EM_SD und EM_LD:", correlationrep))###4. Führe die gleiche Analyse für die Replikationsstichprobe durch.
@@ -44,26 +49,26 @@ print(t_test_resultrep)
 # Berechne den Durchschnitt der Gedächtnisleistungen (SD und LD) für alle Teilnehmer
 filtered_data$Memory_Avg <- rowMeans(filtered_data[, c("EM_SD", "EM_LD")], na.rm = TRUE)
 
-# Überprüfe die ersten Zeilen, um den neuen Durchschnittswert zu sehen
+#Überprüfe die ersten Zeilen, um den neuen Durchschnittswert zu sehen
 head(filtered_data[, c("EM_SD", "EM_LD", "Memory_Avg")])
 
-# Berechne den Durchschnitt der Gedächtnisleistungen (SD und LD) für die Replikationsstichprobe
+#Berechne den Durchschnitt der Gedächtnisleistungen (SD und LD) für die Replikationsstichprobe
 if (nrow(repdata) > 0) {
   filtered_data$Memory_Avg <- rowMeans(filtered_data[, c("EM_SD", "EM_LD")], na.rm = TRUE)
   
-  # Überprüfe die ersten Zeilen der Replikationsstichprobe, um den neuen Durchschnittswert zu sehen
+#Überprüfe die ersten Zeilen der Replikationsstichprobe, um den neuen Durchschnittswert zu sehen
   head(repdata[, c("EM_SD", "EM_LD", "Memory_Avg")])
 } else {
   print(repdata)
 }
                       
- # Beispiel: fMRI-Daten für Amygdala und Hippocampus
+#Beispiel:fMRI-Daten für Amygdala und Hippocampus
 corfMRIpic<-cor(filtered_data$fMRI_amy_neg_neu, filtered_data$fMRI_hipp_neg_neu, use = "complete.obs")
 print(corfMRIpic)                      
                     
 corfMRIpicrep<-cor(filtered_data_rep$fMRI_amy_neg_neu, filtered_data_rep$fMRI_hipp_neg_neu, use = "complete.obs")
 print(corfMRIpicrep)
-
+### Main analysis
 #Hypothese:"Die fMRI-Aktivität in der Amygdala und im Hippocampus ist während der Betrachtung negativer Bilder stärker korreliert als während der Betrachtung neutraler Bilder."
 
 # Beispiel-Daten für Amygdala und Hippocampus unter zwei Bedingungen (negativ und neutral)in mydata 
@@ -91,4 +96,5 @@ library("psych")
 fisher_test <- r.test(n = length(fMRI_amy_neg), r12 = cor_neg, r34 = cor_neu)
 print(fisher_test)
 
-###Altrenativ könnte es 2 verschiedene R-Scripts jeweils mit den Orginaldaten und den Replikationsdaten geben 
+### Additional analysis
+### Replication
