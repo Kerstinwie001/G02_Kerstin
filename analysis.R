@@ -225,6 +225,9 @@ print(fisher_test)
 ### Read in data and quality check = removing of low-quality data
 mydata2 <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt", header = TRUE, sep = "\t")
 
-###Data-cleaning 
+###Data-cleaning initial data 
 filtered_data2 <- mydata[mydata$Filter != 1, ] #Data-cleanup für die initialen Daten
+
+### Read in data and quality check = removing of low-quality data
+mydata2 <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt", header = TRUE, sep = "\t")
 
