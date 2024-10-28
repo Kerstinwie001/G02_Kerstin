@@ -259,3 +259,29 @@ if (cor_amy_hipp > 0.5) {
 } else {
   cat("Keine Aggregation der fMRI-Daten durchgeführt, da die Korrelation < 0.5 ist.\n")
 }
+
+###Main analysis 
+# Lineare Regressionsmodelle zur Überprüfung der Forschungsfrage
+# Modell 1: Einfluss von Extraversion auf die Amygdala-Aktivität
+model_amy <- lm(fMRI_amy_neg_neu ~ Extraversion, data = filtered_data2)
+summary(model_amy)
+
+# Modell 2: Einfluss von Extraversion auf die Hippocampus-Aktivität
+model_hipp <- lm(fMRI_hipp_neg_neu ~ Extraversion, data = filtered_data2)
+summary(model_hipp)
+
+# Falls eine Aggregation stattgefunden hat, auch ein Modell für die aggregierte Variable
+if (exists("filtered_data2$fMRI_combined")) {
+  model_combined <- lm(fMRI_combined ~ Extraversion, data = filtered_data2)
+  summary(model_combined)
+  cat("Regressionsmodell - Einfluss von Extraversion auf die kombinierte fMRI-Aktivität:\n")
+  print(summary(model_combined))
+}
+
+# Ausgabe der Ergebnisse der Modelle
+cat("Regressionsmodell - Einfluss von Extraversion auf Amygdala-Aktivität:\n")
+print(summary(model_amy))
+
+cat("Regressionsmodell - Einfluss von Extraversion auf Hippocampus-Aktivität:\n")
+print(summary(model_hipp))
+
