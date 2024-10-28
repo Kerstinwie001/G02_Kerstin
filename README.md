@@ -37,3 +37,7 @@ the fMRI signal between negative and neutral Pictures where compared in both dat
 =======
 # Discussion
 >>>>>>> 6f3eaeadd634bfc264462848bd4ad342cb021d11
+
+
+# Exercise 7 - Git analysis 2  -- Finalize your own research project in Git and write your first paper (draft)
+
