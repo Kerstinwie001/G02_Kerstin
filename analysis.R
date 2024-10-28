@@ -186,6 +186,36 @@ fisher_test <- r.test(n = nrow(neg_data), r12 = cor_neg, r34 = cor_neu)
 # Print the Fisher Z-test result
 print(fisher_test)
 
-### Additional analysis
+### Additional analysis: Regressionsanalyse zur Vorhersage der Hippocampus-Aktivität
+# Lineare Regression für negative Bilder
+model_neg <- lm(fMRI_hipp_neg ~ fMRI_amy_neg)
+summary(model_neg)
+
+# Lineare Regression für neutrale Bilder
+model_neu <- lm(fMRI_hipp_neu ~ fMRI_amy_neu)
+summary(model_neu)
 
 ### Replication
+#Berechne die Korrelationen für negative Bilder zwischen Amygdala und Hippocampus
+cor_neg <- cor(repdata$fMRI_amy_neg_neu, repdata$fMRI_hipp_neg_neu, use = "complete.obs")
+p_value_neg <- cor.test(repdata$fMRI_amy_neg_neu, repdata$fMRI_hipp_neg_neu)$p.value
+
+# Ausgabe der Ergebnisse
+cat("Korrelation für negative Bilder:", cor_neg, "\n")
+cat("p-Wert für negative Bilder:", p_value_neg, "\n")
+
+# Optional: Falls neutrale Daten verfügbar sind, berechne auch deren Korrelation und führe den Fisher-Z-Test durch
+# Ersetze 'fMRI_amy_neu' und 'fMRI_hipp_neu' mit den tatsächlichen Variablennamen für neutrale Bilder.
+cor_neu <- cor(repdata$fMRI_amy_neu, repdata$fMRI_hipp_neu, use = "complete.obs")
+p_value_neu <- cor.test(repdata$fMRI_amy_neu, repdata$fMRI_hipp_neu)$p.value
+
+# Installiere das Paket 'psych', falls nicht vorhanden
+if (!require(psych)) install.packages("psych")
+library(psych)
+
+# Führe den Fisher-Z-Test durch, um die Korrelationen zu vergleichen
+fisher_test <- r.test(n = nrow(repdata), r12 = cor_neg, r34 = cor_neu)
+
+# Ausgabe des Fisher-Z-Tests
+print(fisher_test)
+
