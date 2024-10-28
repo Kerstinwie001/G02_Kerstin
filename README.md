@@ -43,5 +43,18 @@ the fMRI signal between negative and neutral Pictures where compared in both dat
 #Titel
 Wie beeinflusst der Grad der Extraversion die fMRI-Aktivität in der Amygdala und im Hippocampus während der Betrachtung negativer Bilder?
 
-#Keywords: Extraversion, fMRI_amy_neg_neu, fMRI_hipp_neg_neu
+#Keywords
+Extraversion, fMRI_amy_neg_neu, fMRI_hipp_neg_neu
+
+#Intodution
+## Allgemeiner Hintergrund zu emotionalem Gedächtnis und neuronaler Verarbeitung
+Emotional aufgeladene Erinnerungen sind oft lebhafter und anhaltender als neutrale. Dabei spielen Gehirnregionen wie die Amygdala und der Hippocampus eine zentrale Rolle. Die Amygdala ist maßgeblich an der Verarbeitung von Emotionen beteiligt, während der Hippocampus für die Bildung und den Abruf von Erinnerungen wichtig ist. Ihr Zusammenspiel liefert wertvolle Einblicke in die Mechanismen von Emotionen und Gedächtnis.
+
+## Relevanz individueller Unterschiede und Rolle der Persönlichkeit
+Persönlichkeitsmerkmale wie Extraversion können beeinflussen, wie Menschen emotionale Reize verarbeiten. Während Extraversion oft mit einer erhöhten Empfänglichkeit für positive Erlebnisse in Verbindung gebracht wird, ist ihr Einfluss auf die Verarbeitung negativer Emotionen weniger erforscht. Eine Untersuchung dieses Zusammenhangs könnte aufzeigen, wie die Persönlichkeit neuronale Reaktionen auf emotionale Erlebnisse, insbesondere in der Amygdala und im Hippocampus, beeinflusst.
+
+## Forschungsfrage und Bedeutung der aktuellen Studie
+Diese Studie untersucht, wie der Grad der Extraversion die fMRI-Aktivität in der Amygdala und im Hippocampus während der Betrachtung negativer Bilder beeinflusst. Ziel ist es, zu verstehen, wie Persönlichkeitsmerkmale die Gehirnaktivität in emotionalen Kontexten beeinflussen, was neue Erkenntnisse über die emotionale Regulation und individuelle Unterschiede in der Gedächtnisverarbeitung liefern könnte.
+
+
 
