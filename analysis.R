@@ -219,3 +219,11 @@ fisher_test <- r.test(n = nrow(repdata), r12 = cor_neg, r34 = cor_neu)
 # Ausgabe des Fisher-Z-Tests
 print(fisher_test)
 
+###Exercise 7 - Git analysis 2  -- Finalize your own research project in Git and write your first paper (draft)
+
+#Reading in raw-data, basic quality control (applying filter)
+### Read in data and quality check = removing of low-quality data
+mydata2 <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt", header = TRUE, sep = "\t")
+
+
+
