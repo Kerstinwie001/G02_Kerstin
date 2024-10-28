@@ -219,7 +219,13 @@ fisher_test <- r.test(n = nrow(repdata), r12 = cor_neg, r34 = cor_neu)
 # Ausgabe des Fisher-Z-Tests
 print(fisher_test)
 
+#------------------------------------------------------------------------------
 ###Exercise 7 - Git analysis 2  -- Finalize your own research project in Git and write your first paper (draft)
+
+###research question that includes 3 of the available variables:Sex,Memory (SD, LD, Extraversion, Testosteron, fMRI (amygdala, hippocampus): 
+#Wie beeinflusst der Grad der Extraversion die fMRI-Aktivität in der Amygdala  und im Hippocampus während der Betrachtung negativer Bilder?
+  
+  Variablen: Extraversion, fMRI_amy_neg_neu, fMRI_hipp_neg_neu
 
 #Reading in raw-data, basic quality control (applying filter)
 ### Read in data and quality check = removing of low-quality data
@@ -234,3 +240,4 @@ mydata2 <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt",
 ###Data-cleaning repdata  
 filtered_data2 <- mydata[mydata$Filter != 1, ] #Data-cleanup für die initialen Daten
 
+###Reliability/Validation/Aggregation steps (Aggregation of the independent variables if meaningful (if r > 0.5))
