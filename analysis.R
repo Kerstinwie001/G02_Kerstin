@@ -241,3 +241,21 @@ mydata2 <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt",
 filtered_data2 <- mydata[mydata$Filter != 1, ] #Data-cleanup für die initialen Daten
 
 ###Reliability/Validation/Aggregation steps (Aggregation of the independent variables if meaningful (if r > 0.5))
+# Berechnung der Korrelationen zwischen den unabhängigen Variablen
+cor_extraversion_amy <- cor(filtered_data2$Extraversion, filtered_data2$fMRI_amy_neg_neu, use = "complete.obs")
+cor_extraversion_hipp <- cor(filtered_data2$Extraversion, filtered_data2$fMRI_hipp_neg_neu, use = "complete.obs")
+cor_amy_hipp <- cor(filtered_data2$fMRI_amy_neg_neu, filtered_data2$fMRI_hipp_neg_neu, use = "complete.obs")
+
+# Ausgabe der Korrelationen
+cat("Korrelation zwischen Extraversion und Amygdala-Aktivität (negativ):", cor_extraversion_amy, "\n")
+cat("Korrelation zwischen Extraversion und Hippocampus-Aktivität (negativ):", cor_extraversion_hipp, "\n")
+cat("Korrelation zwischen Amygdala- und Hippocampus-Aktivität (negativ):", cor_amy_hipp, "\n")
+
+# Aggregation der Variablen, wenn Korrelationen > 0.5 sind
+# Beispiel: Aggregation der fMRI-Werte der Amygdala und des Hippocampus, wenn sie stark korrelieren
+if (cor_amy_hipp > 0.5) {
+  filtered_data2$fMRI_combined <- rowMeans(filtered_data2[, c("fMRI_amy_neg_neu", "fMRI_hipp_neg_neu")], na.rm = TRUE)
+  cat("fMRI-Daten der Amygdala und des Hippocampus wurden zu einer neuen Variable 'fMRI_combined' aggregiert.\n")
+} else {
+  cat("Keine Aggregation der fMRI-Daten durchgeführt, da die Korrelation < 0.5 ist.\n")
+}
