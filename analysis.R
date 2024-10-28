@@ -231,3 +231,6 @@ filtered_data2 <- mydata[mydata$Filter != 1, ] #Data-cleanup für die initialen 
 ### Read in data and quality check = removing of low-quality data
 mydata2 <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/mydata.txt", header = TRUE, sep = "\t")
 
+###Data-cleaning repdata  
+filtered_data2 <- mydata[mydata$Filter != 1, ] #Data-cleanup für die initialen Daten
+
