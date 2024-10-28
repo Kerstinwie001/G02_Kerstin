@@ -40,4 +40,8 @@ the fMRI signal between negative and neutral Pictures where compared in both dat
 
 
 # Exercise 7 - Git analysis 2  -- Finalize your own research project in Git and write your first paper (draft)
+#Titel
+Wie beeinflusst der Grad der Extraversion die fMRI-Aktivität in der Amygdala und im Hippocampus während der Betrachtung negativer Bilder?
+
+#Keywords: Extraversion, fMRI_amy_neg_neu, fMRI_hipp_neg_neu
 
