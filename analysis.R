@@ -223,9 +223,7 @@ print(fisher_test)
 ###Exercise 7 - Git analysis 2  -- Finalize your own research project in Git and write your first paper (draft)
 
 ###research question that includes 3 of the available variables:Sex,Memory (SD, LD, Extraversion, Testosteron, fMRI (amygdala, hippocampus): 
-#Wie beeinflusst der Grad der Extraversion die fMRI-Aktivität in der Amygdala  und im Hippocampus während der Betrachtung negativer Bilder?
-  
-  Variablen: Extraversion, fMRI_amy_neg_neu, fMRI_hipp_neg_neu
+#Wie beeinflusst der Grad der Extraversion die fMRI-Aktivität in der Amygdala  und im Hippocampus während der Betrachtung negativer Bilder? Variablen: Extraversion, fMRI_amy_neg_neu, fMRI_hipp_neg_neu
 
 #Reading in raw-data, basic quality control (applying filter)
 ### Read in data and quality check = removing of low-quality data
@@ -285,43 +283,55 @@ print(summary(model_amy))
 cat("Regressionsmodell - Einfluss von Extraversion auf Hippocampus-Aktivität:\n")
 print(summary(model_hipp))
 
-# Setze einen Seed für Reproduzierbarkeit
-set.seed(123)
+###Sensitivitätsanalyse 
 
-# Original-Modelle speichern
-original_model_amy <- summary(lm(fMRI_amy_neg_neu ~ Extraversion, data = filtered_data2))
-original_model_hipp <- summary(lm(fMRI_hipp_neg_neu ~ Extraversion, data = filtered_data2))
+#Originaldaten ohne Filter anwenden
+cat("### Hauptanalyse ohne Filter ###\n")
 
-# Initialisiere Listen, um Sensitivitätsergebnisse zu speichern
-sensitivity_results_amy <- list()
-sensitivity_results_hipp <- list()
+#Erstelle ein Modell für die gesamte Datenmenge ohne Filter
+model_amy_no_filter <- lm(fMRI_amy_neg_neu ~ Extraversion, data = mydata2)
+model_hipp_no_filter <- lm(fMRI_hipp_neg_neu ~ Extraversion, data = mydata2)
 
-# Anzahl der Iterationen für die Sensitivitätsanalyse
-n_iterations <- 100
+# Zeige die Zusammenfassungen der Modelle ohne Filter
+cat("Modell - Einfluss von Extraversion auf Amygdala-Aktivität (ohne Filter):\n")
+print(summary(model_amy_no_filter))
 
-# Schleife durch n Iterationen, um zufällig 5% der Datenpunkte zu entfernen und Modelle neu zu berechnen
-for (i in 1:n_iterations) {
-  # Entferne zufällig 5% der Datenpunkte
-  sampled_data <- filtered_data2[-sample(1:nrow(filtered_data2), size = floor(0.05 * nrow(filtered_data2))), ]
-  
-  # Erstelle das Modell für die Amygdala-Aktivität mit den reduzierten Daten
-  model_amy <- lm(fMRI_amy_neg_neu ~ Extraversion, data = sampled_data)
-  sensitivity_results_amy[[i]] <- summary(model_amy)$coefficients
-  
-  # Erstelle das Modell für die Hippocampus-Aktivität mit den reduzierten Daten
-  model_hipp <- lm(fMRI_hipp_neg_neu ~ Extraversion, data = sampled_data)
-  sensitivity_results_hipp[[i]] <- summary(model_hipp)$coefficients
-}
+cat("Modell - Einfluss von Extraversion auf Hippocampus-Aktivität (ohne Filter):\n")
+print(summary(model_hipp_no_filter))
 
-# Berechnung der durchschnittlichen Sensitivität der Koeffizienten für Amygdala und Hippocampus
-# und Vergleich mit den ursprünglichen Modellen
-average_coeff_amy <- Reduce("+", lapply(sensitivity_results_amy, function(x) x["Extraversion", "Estimate"])) / n_iterations
-average_coeff_hipp <- Reduce("+", lapply(sensitivity_results_hipp, function(x) x["Extraversion", "Estimate"])) / n_iterations
+# Datenbereinigung anwenden: Entferne Daten mit Filterwert von 1
+filtered_data2 <- mydata2[mydata2$Filter != 1, ]
 
-# Ausgabe der Ergebnisse
-cat("Originaler Koeffizient für Extraversion auf Amygdala-Aktivität:", original_model_amy$coefficients["Extraversion", "Estimate"], "\n")
-cat("Durchschnittlicher Koeffizient nach Sensitivitätsanalyse (Amygdala):", average_coeff_amy, "\n\n")
+# Hauptanalyse mit gefilterten Daten
+cat("\n### Hauptanalyse mit Filter ###\n")
+# Erstelle ein Modell für die gefilterten Daten
+model_amy_filtered <- lm(fMRI_amy_neg_neu ~ Extraversion, data = filtered_data2)
+model_hipp_filtered <- lm(fMRI_hipp_neg_neu ~ Extraversion, data = filtered_data2)
 
-cat("Originaler Koeffizient für Extraversion auf Hippocampus-Aktivität:", original_model_hipp$coefficients["Extraversion", "Estimate"], "\n")
-cat("Durchschnittlicher Koeffizient nach Sensitivitätsanalyse (Hippocampus):", average_coeff_hipp, "\n")
+# Zeige die Zusammenfassungen der Modelle mit Filter
+cat("Modell - Einfluss von Extraversion auf Amygdala-Aktivität (mit Filter):\n")
+print(summary(model_amy_filtered))
+
+cat("Modell - Einfluss von Extraversion auf Hippocampus-Aktivität (mit Filter):\n")
+print(summary(model_hipp_filtered))
+
+# Vergleich der Koeffizienten zwischen den beiden Ansätzen
+cat("\n### Vergleich der Ergebnisse ###\n")
+cat("Amygdala - Koeffizient für Extraversion (ohne Filter):", summary(model_amy_no_filter)$coefficients["Extraversion", "Estimate"], "\n")
+cat("Amygdala - Koeffizient für Extraversion (mit Filter):", summary(model_amy_filtered)$coefficients["Extraversion", "Estimate"], "\n\n")
+
+cat("Hippocampus - Koeffizient für Extraversion (ohne Filter):", summary(model_hipp_no_filter)$coefficients["Extraversion", "Estimate"], "\n")
+cat("Hippocampus - Koeffizient für Extraversion (mit Filter):", summary(model_hipp_filtered)$coefficients["Extraversion", "Estimate"], "\n")
+
+# Vergleich der p-Werte zur Signifikanzbewertung
+cat("\nAmygdala - p-Wert für Extraversion (ohne Filter):", summary(model_amy_no_filter)$coefficients["Extraversion", "Pr(>|t|)"], "\n")
+cat("Amygdala - p-Wert für Extraversion (mit Filter):", summary(model_amy_filtered)$coefficients["Extraversion", "Pr(>|t|)"], "\n\n")
+
+cat("Hippocampus - p-Wert für Extraversion (ohne Filter):", summary(model_hipp_no_filter)$coefficients["Extraversion", "Pr(>|t|)"], "\n")
+cat("Hippocampus - p-Wert für Extraversion (mit Filter):", summary(model_hipp_filtered)$coefficients["Extraversion", "Pr(>|t|)"], "\n")
+
+# Interpretation der Ergebnisse:
+cat("\n### Interpretation ###\n")
+cat("Vergleiche, ob sich die Koeffizienten und p-Werte signifikant unterscheiden, um festzustellen, ob der Filter einen wesentlichen Einfluss auf die Ergebnisse hat.\n")
+
 
