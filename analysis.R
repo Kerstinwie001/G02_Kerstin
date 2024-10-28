@@ -334,4 +334,85 @@ cat("Hippocampus - p-Wert für Extraversion (mit Filter):", summary(model_hipp_f
 cat("\n### Interpretation ###\n")
 cat("Vergleiche, ob sich die Koeffizienten und p-Werte signifikant unterscheiden, um festzustellen, ob der Filter einen wesentlichen Einfluss auf die Ergebnisse hat.\n")
 
+###Replikation 
+# Lese die repdata.txt-Datei als repdata2 ein (Pfad anpassen)
+repdata2 <- read.delim("C:/Users/Kerstin/Desktop/gittest/G02_Kerstin/repdata.txt", header = TRUE, sep = "\t")
+
+# Originaldaten ohne Filter anwenden
+cat("### Hauptanalyse ohne Filter ###\n")
+# Erstelle ein Modell für die gesamte Datenmenge ohne Filter
+model_amy_no_filter <- lm(fMRI_amy_neg_neu ~ Extraversion, data = repdata2)
+model_hipp_no_filter <- lm(fMRI_hipp_neg_neu ~ Extraversion, data = repdata2)
+
+# Zeige die Zusammenfassungen der Modelle ohne Filter
+cat("Modell - Einfluss von Extraversion auf Amygdala-Aktivität (ohne Filter):\n")
+print(summary(model_amy_no_filter))
+
+cat("Modell - Einfluss von Extraversion auf Hippocampus-Aktivität (ohne Filter):\n")
+print(summary(model_hipp_no_filter))
+
+# Datenbereinigung anwenden: Entferne Daten mit Filterwert von 1
+filtered_data2 <- repdata2[repdata2$Filter != 1, ]
+
+# Zeige die ersten Zeilen der gefilterten Daten zur Kontrolle
+head(filtered_data2)
+
+# Berechnung der Korrelationen zwischen den unabhängigen Variablen
+cor_extraversion_amy <- cor(filtered_data2$Extraversion, filtered_data2$fMRI_amy_neg_neu, use = "complete.obs")
+cor_extraversion_hipp <- cor(filtered_data2$Extraversion, filtered_data2$fMRI_hipp_neg_neu, use = "complete.obs")
+cor_amy_hipp <- cor(filtered_data2$fMRI_amy_neg_neu, filtered_data2$fMRI_hipp_neg_neu, use = "complete.obs")
+
+# Ausgabe der Korrelationen
+cat("Korrelation zwischen Extraversion und Amygdala-Aktivität (negativ):", cor_extraversion_amy, "\n")
+cat("Korrelation zwischen Extraversion und Hippocampus-Aktivität (negativ):", cor_extraversion_hipp, "\n")
+cat("Korrelation zwischen Amygdala- und Hippocampus-Aktivität (negativ):", cor_amy_hipp, "\n")
+
+# Aggregation der Variablen, wenn Korrelationen > 0.5 sind
+# Beispiel: Aggregation der fMRI-Werte der Amygdala und des Hippocampus, wenn sie stark korrelieren
+if (cor_amy_hipp > 0.5) {
+  filtered_data2$fMRI_combined <- rowMeans(filtered_data2[, c("fMRI_amy_neg_neu", "fMRI_hipp_neg_neu")], na.rm = TRUE)
+  cat("fMRI-Daten der Amygdala und des Hippocampus wurden zu einer neuen Variable 'fMRI_combined' aggregiert.\n")
+} else {
+  cat("Keine Aggregation der fMRI-Daten durchgeführt, da die Korrelation < 0.5 ist.\n")
+}
+
+# Hauptanalyse mit gefilterten Daten
+cat("\n### Hauptanalyse mit Filter ###\n")
+# Erstelle ein Modell für die gefilterten Daten
+model_amy_filtered <- lm(fMRI_amy_neg_neu ~ Extraversion, data = filtered_data2)
+model_hipp_filtered <- lm(fMRI_hipp_neg_neu ~ Extraversion, data = filtered_data2)
+
+# Zeige die Zusammenfassungen der Modelle mit Filter
+cat("Modell - Einfluss von Extraversion auf Amygdala-Aktivität (mit Filter):\n")
+print(summary(model_amy_filtered))
+
+cat("Modell - Einfluss von Extraversion auf Hippocampus-Aktivität (mit Filter):\n")
+print(summary(model_hipp_filtered))
+
+# Falls eine Aggregation stattgefunden hat, auch ein Modell für die aggregierte Variable
+if ("fMRI_combined" %in% colnames(filtered_data2)) {
+  model_combined <- lm(fMRI_combined ~ Extraversion, data = filtered_data2)
+  cat("Regressionsmodell - Einfluss von Extraversion auf die kombinierte fMRI-Aktivität:\n")
+  print(summary(model_combined))
+}
+
+# Vergleich der Koeffizienten zwischen den beiden Ansätzen
+cat("\n### Vergleich der Ergebnisse ###\n")
+cat("Amygdala - Koeffizient für Extraversion (ohne Filter):", summary(model_amy_no_filter)$coefficients["Extraversion", "Estimate"], "\n")
+cat("Amygdala - Koeffizient für Extraversion (mit Filter):", summary(model_amy_filtered)$coefficients["Extraversion", "Estimate"], "\n\n")
+
+cat("Hippocampus - Koeffizient für Extraversion (ohne Filter):", summary(model_hipp_no_filter)$coefficients["Extraversion", "Estimate"], "\n")
+cat("Hippocampus - Koeffizient für Extraversion (mit Filter):", summary(model_hipp_filtered)$coefficients["Extraversion", "Estimate"], "\n")
+
+# Vergleich der p-Werte zur Signifikanzbewertung
+cat("\nAmygdala - p-Wert für Extraversion (ohne Filter):", summary(model_amy_no_filter)$coefficients["Extraversion", "Pr(>|t|)"], "\n")
+cat("Amygdala - p-Wert für Extraversion (mit Filter):", summary(model_amy_filtered)$coefficients["Extraversion", "Pr(>|t|)"], "\n\n")
+
+cat("Hippocampus - p-Wert für Extraversion (ohne Filter):", summary(model_hipp_no_filter)$coefficients["Extraversion", "Pr(>|t|)"], "\n")
+cat("Hippocampus - p-Wert für Extraversion (mit Filter):", summary(model_hipp_filtered)$coefficients["Extraversion", "Pr(>|t|)"], "\n")
+
+# Interpretation der Ergebnisse:
+cat("\n### Interpretation ###\n")
+cat("Vergleiche, ob sich die Koeffizienten und p-Werte signifikant unterscheiden, um festzustellen, ob der Filter einen wesentlichen Einfluss auf die Ergebnisse hat.\n")
+
 
