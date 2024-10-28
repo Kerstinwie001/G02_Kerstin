@@ -285,3 +285,43 @@ print(summary(model_amy))
 cat("Regressionsmodell - Einfluss von Extraversion auf Hippocampus-Aktivität:\n")
 print(summary(model_hipp))
 
+# Setze einen Seed für Reproduzierbarkeit
+set.seed(123)
+
+# Original-Modelle speichern
+original_model_amy <- summary(lm(fMRI_amy_neg_neu ~ Extraversion, data = filtered_data2))
+original_model_hipp <- summary(lm(fMRI_hipp_neg_neu ~ Extraversion, data = filtered_data2))
+
+# Initialisiere Listen, um Sensitivitätsergebnisse zu speichern
+sensitivity_results_amy <- list()
+sensitivity_results_hipp <- list()
+
+# Anzahl der Iterationen für die Sensitivitätsanalyse
+n_iterations <- 100
+
+# Schleife durch n Iterationen, um zufällig 5% der Datenpunkte zu entfernen und Modelle neu zu berechnen
+for (i in 1:n_iterations) {
+  # Entferne zufällig 5% der Datenpunkte
+  sampled_data <- filtered_data2[-sample(1:nrow(filtered_data2), size = floor(0.05 * nrow(filtered_data2))), ]
+  
+  # Erstelle das Modell für die Amygdala-Aktivität mit den reduzierten Daten
+  model_amy <- lm(fMRI_amy_neg_neu ~ Extraversion, data = sampled_data)
+  sensitivity_results_amy[[i]] <- summary(model_amy)$coefficients
+  
+  # Erstelle das Modell für die Hippocampus-Aktivität mit den reduzierten Daten
+  model_hipp <- lm(fMRI_hipp_neg_neu ~ Extraversion, data = sampled_data)
+  sensitivity_results_hipp[[i]] <- summary(model_hipp)$coefficients
+}
+
+# Berechnung der durchschnittlichen Sensitivität der Koeffizienten für Amygdala und Hippocampus
+# und Vergleich mit den ursprünglichen Modellen
+average_coeff_amy <- Reduce("+", lapply(sensitivity_results_amy, function(x) x["Extraversion", "Estimate"])) / n_iterations
+average_coeff_hipp <- Reduce("+", lapply(sensitivity_results_hipp, function(x) x["Extraversion", "Estimate"])) / n_iterations
+
+# Ausgabe der Ergebnisse
+cat("Originaler Koeffizient für Extraversion auf Amygdala-Aktivität:", original_model_amy$coefficients["Extraversion", "Estimate"], "\n")
+cat("Durchschnittlicher Koeffizient nach Sensitivitätsanalyse (Amygdala):", average_coeff_amy, "\n\n")
+
+cat("Originaler Koeffizient für Extraversion auf Hippocampus-Aktivität:", original_model_hipp$coefficients["Extraversion", "Estimate"], "\n")
+cat("Durchschnittlicher Koeffizient nach Sensitivitätsanalyse (Hippocampus):", average_coeff_hipp, "\n")
+
