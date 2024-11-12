@@ -78,3 +78,6 @@ Die Filterung schloss Datensätze von geringer Qualität aus. Die Korrelationen 
 
 ##Ergebnisse der Hauptfragestellung
 Die lineare Regression zeigte, dass Extraversion die Amygdala-Aktivität signifikant vorhersagte (β = 0.2511, p < 2e-16) sowie die Hippocampus-Aktivität (β = 0.1466, p = 6.7e-16). Auch die kombinierte fMRT-Variable wies eine signifikante Beziehung zur Extraversion auf (β = 0.1849, p = 7.72e-13).
+
+##Sensitivitätsanalyse
+Die Sensitivitätsanalyse, die gefilterte und ungefilterte Daten verglich, zeigte leichte Unterschiede in den Koeffizienten, jedoch konsistente statistische Signifikanz, was auf die Robustheit der Ergebnisse gegenüber der Filterung hindeutet.
