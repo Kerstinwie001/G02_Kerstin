@@ -73,3 +73,5 @@ Die Teilnehmer betrachteten negative Bilder, während ihre Gehirnaktivität mitt
 Mit linearen Regressionsanalysen wurde der Einfluss von Extraversion auf die Amygdala- und Hippocampus-Aktivität sowie auf die kombinierte fMRT-Variable untersucht. Eine Sensitivitätsanalyse verglich Modelle mit und ohne Datenfilterung, um zu prüfen, ob die Filterung die Ergebnisse beeinflusste. Eine zusätzliche Replikationsanalyse wurde mit einem zweiten Datensatz durchgeführt.
 
 #Ergebnisse
+##Filterung und Validierung
+Die Filterung schloss Datensätze von geringer Qualität aus. Die Korrelationen zeigten signifikante Beziehungen zwischen Extraversion und der fMRT-Aktivität in der Amygdala (r = 0.5577) sowie im Hippocampus (r = 0.2748). Die hohe Korrelation (r = 0.7487) zwischen Amygdala- und Hippocampus-Aktivitäten rechtfertigte die Aggregation zu einer kombinierten fMRT-Variable.
