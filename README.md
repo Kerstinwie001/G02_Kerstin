@@ -71,3 +71,5 @@ Die Teilnehmer betrachteten negative Bilder, während ihre Gehirnaktivität mitt
 
 ##Statistische Analyse
 Mit linearen Regressionsanalysen wurde der Einfluss von Extraversion auf die Amygdala- und Hippocampus-Aktivität sowie auf die kombinierte fMRT-Variable untersucht. Eine Sensitivitätsanalyse verglich Modelle mit und ohne Datenfilterung, um zu prüfen, ob die Filterung die Ergebnisse beeinflusste. Eine zusätzliche Replikationsanalyse wurde mit einem zweiten Datensatz durchgeführt.
+
+#Ergebnisse
