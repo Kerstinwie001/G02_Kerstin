@@ -60,3 +60,11 @@ Diese Studie untersucht, wie der Grad der Extraversion die fMRI-Aktivität in de
 ##Stichprobenbeschreibung
 Die Stichprobe bestand aus 664 jungen, gesunden Erwachsenen (Durchschnittsalter: 22,85 ± 3,37 Jahre), die keine neurologischen oder psychiatrischen Erkrankungen hatten und keine Medikamente (außer hormonellen Kontrazeptiva) einnahmen​. Für die Zusatzanalyse wurden Messungen zur Extraversion sowie zur fMRT-Aktivität in der Amygdala und im Hippocampus während der Betrachtung negativer Bilder durchgeführt. Datensätze von Teilnehmern mit geringer Bildqualität oder Bewegungseffekten wurden vor der Analyse ausgeschlossen​. 
 
+##Studiendesign 
+Die Teilnehmer betrachteten negative Bilder, während ihre Gehirnaktivität mittels fMRT gemessen wurde. Ziel der Studie war es, die Aktivität in der Amygdala und im Hippocampus mit den Extraversion-Werten in Beziehung zu setzen. Zur Gewährleistung der Konsistenz wurden für alle Teilnehmer dieselben fMRT-Einstellungen verwendet.
+
+##Variabeln 
+- Extraversion: Gemessen mit einem standardisierten Selbstberichtsfragebogen. Extraversion dient als unabhängige Variable.
+- fMRT-Amygdala-Aktivität (fMRI_amy_neg_neu): Erfasst die Aktivität der Amygdala als Reaktion auf negative Reize. Eine erhöhte Aktivität zeigt eine stärkere neuronale Reaktion an.
+- fMRT-Hippocampus-Aktivität (fMRI_hipp_neg_neu): Misst die Hippocampus-Reaktion unter denselben Bedingungen.
+- Kombinierte fMRT-Variable: Aufgrund einer hohen Korrelation (r = 0.7487) zwischen Amygdala- und Hippocampus-Aktivitäten wurden diese bei einer Korrelation von r > 0.5 aggregiert.
