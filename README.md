@@ -81,3 +81,6 @@ Die lineare Regression zeigte, dass Extraversion die Amygdala-Aktivität signifi
 
 ##Sensitivitätsanalyse
 Die Sensitivitätsanalyse, die gefilterte und ungefilterte Daten verglich, zeigte leichte Unterschiede in den Koeffizienten, jedoch konsistente statistische Signifikanz, was auf die Robustheit der Ergebnisse gegenüber der Filterung hindeutet.
+
+##Replikationsanalyse
+Die Replikation mit einem zweiten Datensatz ergab ähnliche Ergebnisse: Extraversion sagte signifikant die Amygdala- und Hippocampus-Aktivität vorher. Die Koeffizienten blieben konsistent, was die Zuverlässigkeit der Befunde unterstützt.
