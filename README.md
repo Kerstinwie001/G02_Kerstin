@@ -68,3 +68,6 @@ Die Teilnehmer betrachteten negative Bilder, während ihre Gehirnaktivität mitt
 - fMRT-Amygdala-Aktivität (fMRI_amy_neg_neu): Erfasst die Aktivität der Amygdala als Reaktion auf negative Reize. Eine erhöhte Aktivität zeigt eine stärkere neuronale Reaktion an.
 - fMRT-Hippocampus-Aktivität (fMRI_hipp_neg_neu): Misst die Hippocampus-Reaktion unter denselben Bedingungen.
 - Kombinierte fMRT-Variable: Aufgrund einer hohen Korrelation (r = 0.7487) zwischen Amygdala- und Hippocampus-Aktivitäten wurden diese bei einer Korrelation von r > 0.5 aggregiert.
+
+##Statistische Analyse
+Mit linearen Regressionsanalysen wurde der Einfluss von Extraversion auf die Amygdala- und Hippocampus-Aktivität sowie auf die kombinierte fMRT-Variable untersucht. Eine Sensitivitätsanalyse verglich Modelle mit und ohne Datenfilterung, um zu prüfen, ob die Filterung die Ergebnisse beeinflusste. Eine zusätzliche Replikationsanalyse wurde mit einem zweiten Datensatz durchgeführt.
