@@ -75,3 +75,6 @@ Mit linearen Regressionsanalysen wurde der Einfluss von Extraversion auf die Amy
 #Ergebnisse
 ##Filterung und Validierung
 Die Filterung schloss Datensätze von geringer Qualität aus. Die Korrelationen zeigten signifikante Beziehungen zwischen Extraversion und der fMRT-Aktivität in der Amygdala (r = 0.5577) sowie im Hippocampus (r = 0.2748). Die hohe Korrelation (r = 0.7487) zwischen Amygdala- und Hippocampus-Aktivitäten rechtfertigte die Aggregation zu einer kombinierten fMRT-Variable.
+
+##Ergebnisse der Hauptfragestellung
+Die lineare Regression zeigte, dass Extraversion die Amygdala-Aktivität signifikant vorhersagte (β = 0.2511, p < 2e-16) sowie die Hippocampus-Aktivität (β = 0.1466, p = 6.7e-16). Auch die kombinierte fMRT-Variable wies eine signifikante Beziehung zur Extraversion auf (β = 0.1849, p = 7.72e-13).
