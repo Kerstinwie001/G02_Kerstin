@@ -56,5 +56,7 @@ Persönlichkeitsmerkmale wie Extraversion können beeinflussen, wie Menschen emo
 ## Forschungsfrage und Bedeutung der aktuellen Studie
 Diese Studie untersucht, wie der Grad der Extraversion die fMRI-Aktivität in der Amygdala und im Hippocampus während der Betrachtung negativer Bilder beeinflusst. Ziel ist es, zu verstehen, wie Persönlichkeitsmerkmale die Gehirnaktivität in emotionalen Kontexten beeinflussen, was neue Erkenntnisse über die emotionale Regulation und individuelle Unterschiede in der Gedächtnisverarbeitung liefern könnte.
 
-
+#Methoden 
+##Stichprobenbeschreibung
+Die Stichprobe bestand aus 664 jungen, gesunden Erwachsenen (Durchschnittsalter: 22,85 ± 3,37 Jahre), die keine neurologischen oder psychiatrischen Erkrankungen hatten und keine Medikamente (außer hormonellen Kontrazeptiva) einnahmen​. Für die Zusatzanalyse wurden Messungen zur Extraversion sowie zur fMRT-Aktivität in der Amygdala und im Hippocampus während der Betrachtung negativer Bilder durchgeführt. Datensätze von Teilnehmern mit geringer Bildqualität oder Bewegungseffekten wurden vor der Analyse ausgeschlossen​. 
 
