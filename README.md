@@ -1,11 +1,10 @@
 # Exercise 7 - Git analysis 2  -- Finalize your own research project in Git and write your first paper (draft)
-# Titel
-Wie beeinflusst der Grad der Extraversion die fMRI-Aktivität in der Amygdala und im Hippocampus während der Betrachtung negativer Bilder?
+# Wie beeinflusst der Grad der Extraversion die fMRI-Aktivität in der Amygdala und im Hippocampus während der Betrachtung negativer Bilder?
 
 ## Keywords
 Extraversion, fMRI_amy_neg_neu, fMRI_hipp_neg_neu
 
-# Intodution
+# Einleitung
 ## Allgemeiner Hintergrund zu emotionalem Gedächtnis und neuronaler Verarbeitung
 Emotional aufgeladene Erinnerungen sind oft lebhafter und anhaltender als neutrale. Dabei spielen Gehirnregionen wie die Amygdala und der Hippocampus eine zentrale Rolle. Die Amygdala ist maßgeblich an der Verarbeitung von Emotionen beteiligt, während der Hippocampus für die Bildung und den Abruf von Erinnerungen wichtig ist. Ihr Zusammenspiel liefert wertvolle Einblicke in die Mechanismen von Emotionen und Gedächtnis.
 
